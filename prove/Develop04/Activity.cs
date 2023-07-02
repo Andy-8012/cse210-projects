@@ -6,6 +6,7 @@ class Activity {
     protected DateTime _currentTime;
     protected DateTime _futureTime;
     protected DateTime _endTime;
+    private bool _hideCountDown;
 
     public Activity(string name, string description){
         _name = name;
@@ -20,6 +21,13 @@ class Activity {
         Console.WriteLine();
         Console.WriteLine("How long, in seconds, would you like for your session? ");
         _duration = int.Parse(Console.ReadLine());
+        Console.WriteLine("Would you like to hide the countdown in the Activites? y/n");
+        if (Console.ReadLine().ToLower() == "y"){
+            _hideCountDown = true;
+        }
+        else{
+            _hideCountDown = false;
+        }
     }
 
     public void DisplayEndingMessgae(){
@@ -53,11 +61,19 @@ class Activity {
     }
 
     public void ShowCountDown(int seconds){
-        while (seconds > 0){
-            Console.Write(seconds);
+        if (_hideCountDown){
+            while (seconds > 0){
             Thread.Sleep(1000);
-            Console.Write("\b \b");
             seconds -= 1;
+        }
+        }
+        else{
+            while (seconds > 0){
+                Console.Write(seconds);
+                Thread.Sleep(1000);
+                Console.Write("\b \b");
+                seconds -= 1;
+            }
         }
 
     }
