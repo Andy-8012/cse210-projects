@@ -4,6 +4,15 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello FinalProject World!");
+        Console.Clear();
+
+        Gameplay gameplay = new Gameplay();
+
+        gameplay.Start();
+
+        Console.WriteLine("You died!");
+
+        Console.WriteLine($"Your final score was {gameplay.GetScore()}");
+
     }
 }
